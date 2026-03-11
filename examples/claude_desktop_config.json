@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "webfuse": {
+      "url": "https://session-mcp.webfu.se/mcp",
+      "headers": {
+        "Authorization": "Bearer YOUR_WEBFUSE_REST_KEY"
+      }
+    }
+  }
+}
