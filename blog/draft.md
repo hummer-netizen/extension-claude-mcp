@@ -130,3 +130,20 @@ Or just keep chatting with Claude Desktop. Sometimes the simplest setup is the b
 Everything is on GitHub: [hummer-netizen/extension-claude-mcp](https://github.com/hummer-netizen/extension-claude-mcp)
 
 There's not much to it. That's the point.
+
+## Works with Claude Code Too
+
+Same config, different client. If you use [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (Anthropic's terminal-based coding agent), add the same MCP server:
+
+```bash
+claude mcp add webfuse \
+  --transport http \
+  --url https://session-mcp.webfu.se/mcp \
+  --header "Authorization: Bearer YOUR_WEBFUSE_REST_KEY"
+```
+
+Now Claude Code can browse documentation, check deployed pages, and interact with web apps — all from your terminal. Useful for debugging: "Navigate to localhost:3000 and check if the login form works."
+
+## Use Cases
+
+People are using this for research workflows, data extraction, accessibility audits, and form filling. See the full list: [examples/USE_CASES.md](https://github.com/hummer-netizen/extension-claude-mcp/blob/main/examples/USE_CASES.md)
