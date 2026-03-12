@@ -1,0 +1,19 @@
+{
+  "servers": {
+    "webfuse-session": {
+      "type": "http",
+      "url": "https://session-mcp.webfu.se/mcp",
+      "headers": {
+        "Authorization": "Bearer ${input:webfuse_api_key}"
+      }
+    }
+  },
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "webfuse_api_key",
+      "description": "Webfuse Space REST API Key",
+      "password": true
+    }
+  ]
+}
