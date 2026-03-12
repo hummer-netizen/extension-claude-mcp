@@ -5,12 +5,21 @@ shortTitle: "Claude Desktop + Webfuse MCP"
 created: 2026-03-11
 category: ai-agents
 authorId: nicholas-piel
-tags: ["claude", "anthropic", "mcp", "browser-automation", "webfuse"]
+tags: ["claude", "anthropic", "mcp", "browser-automation", "webfuse", "claude-desktop", "claude-code", "cursor", "vscode", "zero-code"]
 featurePriority: 0
 relatedLinks:
   - text: "OpenAI Agent + Webfuse MCP"
     href: "/blog/build-an-ai-agent-that-controls-a-live-browser"
     description: "Build a custom agent with the OpenAI Agents SDK and Webfuse MCP."
+  - text: "Vercel AI SDK + Webfuse MCP"
+    href: "/blog/build-a-browsing-assistant-with-vercel-ai-sdk-and-webfuse"
+    description: "TypeScript version for Next.js apps."
+  - text: "LangChain + Webfuse MCP"
+    href: "/blog/how-to-connect-langchain-to-a-live-browser-with-webfuse-mcp"
+    description: "Python tutorial with LangGraph and human-in-the-loop."
+  - text: "LiveKit Voice Agent + Webfuse MCP"
+    href: "/blog/build-a-voice-agent-that-browses-with-livekit-and-webfuse"
+    description: "Voice-controlled browser agent with LiveKit."
   - text: "Session MCP Server Docs"
     href: "https://dev.webfu.se/session-mcp-server/"
     description: "Full reference for the 13 browser tools."
@@ -26,6 +35,8 @@ faqs:
     answer: "Yes. Use the MCP endpoint with any Anthropic SDK that supports MCP tools. The Desktop setup is just the simplest way to get started."
   - question: "What about sensitive pages?"
     answer: "The Webfuse session runs in your browser with your auth. Claude only sees what you see. You control which pages to visit."
+  - question: "Does this work with Cursor and VS Code?"
+    answer: "Yes. The same MCP endpoint works with any MCP client. Config examples for Claude Desktop, Cursor, and VS Code Copilot are all in the GitHub repo."
 ---
 
 What if Claude could see your screen and control your browser?
