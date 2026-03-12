@@ -12,7 +12,16 @@ Claude gets 13 browser tools via [MCP](https://modelcontextprotocol.io): navigat
 4. Open your Webfuse Space in a browser
 5. Ask Claude to do things on the page
 
-See [SETUP.md](SETUP.md) for the full guide, or jump to [examples/WALKTHROUGH.md](examples/WALKTHROUGH.md) for demo conversations.
+See [SETUP.md](SETUP.md) for the full guide.
+
+### Verify Your Connection
+
+```bash
+pip install httpx
+python examples/test_connection.py YOUR_REST_KEY
+```
+
+This lists all 13 tools — if it works here, it works in Claude Desktop.
 
 ## Also Works With
 
@@ -51,6 +60,12 @@ The endpoint is the same for all clients: `https://session-mcp.webfu.se/mcp`
 | | `act_textSelect` | Highlight text on the page |
 | **Navigate** | `navigate` | Go to a URL |
 | **Wait** | `wait` | Wait for page changes |
+
+## Guides
+
+- [WALKTHROUGH.md](examples/WALKTHROUGH.md) — Demo conversations to try
+- [USE_CASES.md](examples/USE_CASES.md) — Real scenarios by category (research, forms, accessibility)
+- [SYSTEM_PROMPTS.md](examples/SYSTEM_PROMPTS.md) — Prompt templates for better results
 
 ## Blog Post
 
