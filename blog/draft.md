@@ -155,6 +155,72 @@ claude mcp add webfuse \
 
 Now Claude Code can browse documentation, check deployed pages, and interact with web apps — all from your terminal. Useful for debugging: "Navigate to localhost:3000 and check if the login form works."
 
+## Works with Cursor
+
+If you're building web apps, Cursor + Webfuse is a natural fit. Your AI coding assistant can check its own work.
+
+Add this to `.cursor/mcp.json` in your project root:
+
+```json
+{
+  "mcpServers": {
+    "webfuse-session": {
+      "type": "http",
+      "url": "https://session-mcp.webfu.se/mcp",
+      "headers": {
+        "Authorization": "Bearer YOUR_WEBFUSE_REST_KEY"
+      }
+    }
+  }
+}
+```
+
+Now Cursor's agent can navigate to your deployed app, check if the UI renders correctly, fill in forms to test validation, and read error messages from the actual page. Debug loops get shorter when the AI can see the result.
+
+## Works with VS Code Copilot
+
+GitHub Copilot in VS Code also supports MCP. Create `.vscode/mcp.json`:
+
+```json
+{
+  "servers": {
+    "webfuse-session": {
+      "type": "http",
+      "url": "https://session-mcp.webfu.se/mcp",
+      "headers": {
+        "Authorization": "${input:webfuse_api_key}"
+      }
+    }
+  },
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "webfuse_api_key",
+      "description": "Webfuse Space REST API Key",
+      "password": true
+    }
+  ]
+}
+```
+
+VS Code prompts for the key on first use and stores it securely. Same 13 tools, same live browser.
+
+## How It Works
+
+The magic is that there's no magic.
+
+```
+You ──────────────── Webfuse Session ──── Any Website
+                          │
+Claude ── MCP endpoint ───┘
+```
+
+Your browser runs through a Webfuse proxy session. That session exposes an MCP endpoint with 13 tools. Claude Desktop (or Cursor, or VS Code, or Claude Code) connects to that endpoint.
+
+When Claude calls `act_click`, the click happens in your actual browser tab. When it calls `see_domSnapshot`, it reads the live DOM. There's no separate browser instance, no screen recording, no pixel matching. Just structured access to the page you're looking at.
+
+The REST key scopes Claude to your Space. Multiple sessions can run simultaneously. You stay in control of what pages Claude can see.
+
 ## Use Cases
 
 People are using this for research workflows, data extraction, accessibility audits, and form filling. See the full list: [examples/USE_CASES.md](https://github.com/hummer-netizen/extension-claude-mcp/blob/main/examples/USE_CASES.md)
