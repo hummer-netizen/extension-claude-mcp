@@ -26,6 +26,18 @@ headers = {
     "Accept": "application/json, text/event-stream",
 }
 
+
+def parse_response(resp):
+    """Parse JSON from either direct JSON or SSE response."""
+    content_type = resp.headers.get("content-type", "")
+    if "text/event-stream" in content_type:
+        for line in resp.text.splitlines():
+            if line.startswith("data: "):
+                return json.loads(line[6:])
+        raise ValueError("No data line found in SSE response")
+    return resp.json()
+
+
 print(f"Connecting to {MCP_URL}...")
 
 # Step 1: Initialize
@@ -45,6 +57,7 @@ if resp.status_code != 200:
     print(resp.text[:200])
     sys.exit(1)
 
+data = parse_response(resp)
 session_id = resp.headers.get("mcp-session-id", "")
 if session_id:
     headers["mcp-session-id"] = session_id
@@ -65,7 +78,7 @@ resp = httpx.post(MCP_URL, json={
     "params": {},
 }, headers=headers, timeout=15)
 
-data = resp.json()
+data = parse_response(resp)
 tools = data.get("result", {}).get("tools", [])
 
 if tools:
